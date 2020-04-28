@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //thisYear = mCal.get(Calendar.YEAR);
         //thisMonth = mCal.get(Calendar.MONTH) + 1;
-        //setCalendarDate(thisYear,thisMonth);  //처음에 년/달 출력
+        setCalendarDate(thisYear,thisMonth + 1);  //처음에 년/달 출력
 
         ImageButton pre = findViewById(R.id.pre); //이전 달
         ImageButton next = findViewById(R.id.next); //다음 달
@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // 양회윤 천재가 아니다
-    // 인정합니다...!!!! 천재가 아닙니다.
+    // 양회윤 바보... 안드로이드 너무 힘들다...
     private void setCalendarDate(int year, int month) {
 
         arrData = new ArrayList<CalData>();
@@ -84,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         thisMonth = date.getMonth();
 
         TextView today = findViewById(R.id.today); //현재텍스트
-        today.setText((thisYear + 1900)+ "." + (thisMonth + 1)); // 년/월 출력
+        today.setText((thisYear + 1900)+ "." + thisMonth); // 년/월 출력
 
 
         mCalToday.set(mCal.get(Calendar.YEAR),month -1, 1); //1일에 맞는 요일 세팅
