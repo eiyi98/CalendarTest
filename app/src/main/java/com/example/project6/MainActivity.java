@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // 양회윤 천재
-    // 인정합니다...!!!!
+    // 양회윤 천재가 아니다
+    // 인정합니다...!!!! 천재가 아닙니다.
     private void setCalendarDate(int year, int month) {
 
         arrData = new ArrayList<CalData>();
