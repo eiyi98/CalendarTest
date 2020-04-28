@@ -121,6 +121,7 @@
         android:layout_marginTop="10dp"
         android:layout_weight="1"
         android:listSelector="#FFC0CB"
-        android:numColumns="7"></GridView>
+        android:numColumns="7"
+        ></GridView>
 
 </LinearLayout>

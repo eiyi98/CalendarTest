@@ -103,7 +103,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         mCal.set(Calendar.MONTH, month); //요일은 +1해야되서 달력에 요일을 세팅할 때 -1을 해줌
-        for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
+        int dayOfMonth = mCal.getActualMaximum(Calendar.DAY_OF_MONTH);
+        if (!isLeapYear((year)) && month == 1) // 윤년이고 2월이면
+        {
+            dayOfMonth--;
+        }
+
+        for (int i = 0; i < dayOfMonth; i++) {
             mCalToday.set(mCal.get(Calendar.YEAR), month, (i + 1));
             arrData.add(new CalData((i+1), mCalToday.get(Calendar.DAY_OF_WEEK)));
         }
@@ -112,6 +118,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mGridView = findViewById(R.id.gridview);
         mGridView.setAdapter(adapter);
 
+    }
+
+    private boolean isLeapYear(int year) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, year);
+        return cal.getActualMaximum(Calendar.DAY_OF_YEAR) > 365;
     }
 }
 
