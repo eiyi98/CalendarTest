@@ -130,7 +130,7 @@ class DateAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
-        return arrData.get(position);
+        return arrData.get(position) == null ? "" : arrData.get(position).getDay();
     }
 
     @Override
@@ -143,14 +143,14 @@ class DateAdapter extends BaseAdapter {
         ViewHolder holder = null;
         if (convertView == null) {
             convertView = inflater.inflate(R.layout.viewitem, parent, false);
-          //  holder = new ViewHolder();
-          //  holder.Viewitem = (TextView)convertView.findViewById(R.id.viewitem);
+            holder = new ViewHolder();
+            holder.Viewitem = (TextView)convertView.findViewById(R.id.viewitem);
 
-            // convertView.setTag(holder);
-        } // else {
-         //   holder = (ViewHolder)convertView.getTag();
-        //}
-        //holder.Viewitem.setText("" + getItem(position));
+            convertView.setTag(holder);
+        } else {
+            holder = (ViewHolder)convertView.getTag();
+        }
+        holder.Viewitem.setText("" + getItem(position));
 
 
         TextView ViewText = convertView.findViewById(R.id.viewitem);
