@@ -136,6 +136,19 @@ class DateAdapter extends BaseAdapter {
 
     @Override
     public Object getItem(int position) {
+        /*
+        if (arrData.get(position) == null)
+        {
+            return null;
+        }
+        else
+        {
+            return arrData.get(position).getDay();
+        }
+        */
+
+        // 위에꺼랑 똑같은 소스코드
+        // 조건 ? true 일때 : false 일때
         return arrData.get(position) == null ? "" : arrData.get(position).getDay();
     }
 
