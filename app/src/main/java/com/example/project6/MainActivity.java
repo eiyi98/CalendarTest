@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ImageButton pre = findViewById(R.id.pre); //이전 달
         ImageButton next = findViewById(R.id.next); //다음 달
 
-
         pre.setOnClickListener(this);
         next.setOnClickListener(this);
     }
@@ -70,8 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    // 양회윤 바보
-    // 인정합니다...
+    // 양회윤 천재
+    // 인정합니다...!!!!
     private void setCalendarDate(int year, int month) {
 
         arrData = new ArrayList<CalData>();
