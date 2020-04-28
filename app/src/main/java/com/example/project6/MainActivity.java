@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
-
+    // 양회윤 바보
     private void setCalendarDate(int year, int month) {
 
         arrData = new ArrayList<CalData>();
