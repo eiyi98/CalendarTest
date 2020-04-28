@@ -27,6 +27,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     GridView mGridView;
     DateAdapter adapter;
 
+    Date date = new Date();
+    int thisYear = date.getYear();
+    int thisMonth = date.getMonth();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         //thisYear = mCal.get(Calendar.YEAR);
         //thisMonth = mCal.get(Calendar.MONTH) + 1;
-        setCalendarDate(thisYear,thisMonth + 1);  //처음에 년/달 출력
+        setCalendarDate(thisYear, thisMonth);  //처음에 년/달 출력
 
         ImageButton pre = findViewById(R.id.pre); //이전 달
         ImageButton next = findViewById(R.id.next); //다음 달
@@ -46,20 +50,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         next.setOnClickListener(this);
     }
 
-    Date date = new Date();
-    int thisYear = date.getYear();
-    int thisMonth = date.getMonth();
-
     @Override
     public void onClick(View v) { //버튼 누를시 달 이동
         switch (v.getId()){
             case R.id.pre:
                 thisMonth --;
+                if (thisMonth == -1) // 1월은 0이니까 0에서 또 전으로 돌아가서 -1이 되면
+                {
+                    thisMonth = 11; // 12월로 세팅
+                    thisYear--;
+                }
                 setCalendarDate(thisYear,thisMonth);
                 break;
 
             case R.id.next:
                 thisMonth ++;
+                if (thisMonth == 12) // 12월이 11인데 또 올라가서 13이 되면
+                {
+                    thisMonth = 0; // 1월로 세팅
+                    thisYear++;
+                }
                 setCalendarDate(thisYear,thisMonth);
                 break;
 
@@ -79,14 +89,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         date.setMonth(month);
         date.setDate(1);
 
-        thisYear = date.getYear();
-        thisMonth = date.getMonth();
-
         TextView today = findViewById(R.id.today); //현재텍스트
-        today.setText((thisYear + 1900)+ "." + thisMonth); // 년/월 출력
+        today.setText((year + 1900) + "." + (month + 1 )); // 년/월 출력
 
 
-        mCalToday.set(mCal.get(Calendar.YEAR),month -1, 1); //1일에 맞는 요일 세팅
+        mCalToday.set((year + 1900), month, 1); //1일에 맞는 요일 세팅
 
         int startDay = mCalToday.get(Calendar.DAY_OF_WEEK);
         if (startDay != 1) {                    //시작 요일이 일요일이 아니면 그만큼 공백
@@ -95,9 +102,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-        mCal.set(Calendar.MONTH, month -1); //요일은 +1해야되서 달력에 요일을 세팅할 때 -1을 해줌
+        mCal.set(Calendar.MONTH, month); //요일은 +1해야되서 달력에 요일을 세팅할 때 -1을 해줌
         for (int i = 0; i < mCal.getActualMaximum(Calendar.DAY_OF_MONTH); i++) {
-            mCalToday.set(mCal.get(Calendar.YEAR), month - 1, (i + 1));
+            mCalToday.set(mCal.get(Calendar.YEAR), month, (i + 1));
             arrData.add(new CalData((i+1), mCalToday.get(Calendar.DAY_OF_WEEK)));
         }
 
